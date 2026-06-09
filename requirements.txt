@@ -1,0 +1,5 @@
+# Core ranking engine (rank.py) uses only the Python standard library.
+# Nothing below is needed to reproduce submission.csv.
+
+# Sandbox demo UI only:
+streamlit>=1.31,<2.0

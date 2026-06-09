@@ -1,0 +1,78 @@
+# Redrob Hackathon — Submission Metadata
+# Fill in the placeholders marked <...> before you submit on the portal.
+
+team_name: "<your-registered-participant-id>"
+
+primary_contact:
+  name: "Anish Kumar"
+  email: "<your-email@example.com>"
+  phone: "<+91-XXXXXXXXXX>"
+
+team_members:
+  - name: "Anish Kumar"
+    email: "<your-email@example.com>"
+    role: "Team Lead / ML Engineer"
+
+# ============================================================================
+# Code and reproducibility
+# ============================================================================
+github_repo: "https://github.com/<your-username>/IndiaRuns-AI-Candidate-Ranking"
+
+sandbox_link: "https://huggingface.co/spaces/<your-username>/redrob-ranker"
+# A Streamlit app (app.py) that runs the same ranker on a small sample.
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+# ============================================================================
+# Compute environment
+# ============================================================================
+compute:
+  platform: "Local Windows machine"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.11"
+  os: "Windows 11"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+# ============================================================================
+# AI tools declaration (transparency only)
+# ============================================================================
+ai_tools_used:
+  - "Cascade (AI pair-programmer)"
+
+ai_usage_summary: |
+  Used an AI pair-programmer to scaffold the project, discuss the scoring design,
+  and review code. All scoring logic was calibrated by inspecting the real
+  dataset (title/industry/location distributions, honeypot signatures). No
+  candidate data was sent to any hosted LLM, and no LLM is called during ranking.
+
+# ============================================================================
+# Approach summary
+# ============================================================================
+methodology_summary: |
+  Explainable hybrid ranker, no LLM at inference. Final score =
+  content_fit x profile_validity x behavioral_availability. content_fit blends
+  seven components: role/title fit (the decisive gate against keyword stuffers),
+  domain fit (retrieval/ranking/search/recsys/NLP evidence from career text plus
+  a pure-Python TF-IDF similarity to the JD), trust-weighted skill match
+  (proficiency x endorsements x duration, validated against platform assessment
+  scores), experience-band fit, company/career fit (product vs services,
+  anti-job-hopping, consulting-only penalty), location, and education.
+  Behavioral signals (recency, recruiter response, notice period) multiply the
+  score so perfect-on-paper-but-unreachable candidates fall. Internally
+  impossible profiles (honeypots) are detected by consistency checks and pushed
+  to the bottom. Runs in ~3 min for 100K candidates on CPU using only the
+  Python standard library.
+
+# ============================================================================
+# Declarations
+# ============================================================================
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true

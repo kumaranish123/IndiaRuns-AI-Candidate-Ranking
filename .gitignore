@@ -1,0 +1,36 @@
+# Data (too large for git; download from the hackathon bundle)
+data/
+*.jsonl
+*.jsonl.gz
+
+# Provided hackathon bundle (download separately; keep the repo about our solution)
+\[PUB\] India_runs_data_and_ai_challenge/
+*.pdf
+*.docx
+
+# Generated artifacts
+submission.csv
+*.txt.bak
+
+# Extracted doc text (local only)
+README.txt
+job_description.txt
+submission_spec.txt
+redrob_signals_doc.txt
+redrob_signals_full.txt
+redrob_signals_tables.txt
+idea_template.txt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+__MACOSX/
