@@ -5,7 +5,7 @@
 **Team Name:** `<your-registered-participant-id>`
 **Problem Statement:** Intelligent Candidate Discovery & Ranking — given the *Senior AI
 Engineer (Founding Team)* JD, return an explainable ranked top-100 from a 100K-profile pool.
-**Team Leader Name:** Anish Kumar
+**Team Leader Name:** `<your-name>`
 
 ---
 
@@ -97,12 +97,6 @@ JD (interpreted into `src/jd_profile.py`) → read pool once + tokenize → buil
 → score each candidate (content × validity × behavioral) → keep top-100 in a heap → sort and
 assign ranks → write `submission.csv` with grounded reasoning → validate with
 `validate_submission.py`.
-
----
-
-## System Architecture
-
-See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for the full diagram and rationale.
 
 ---
 

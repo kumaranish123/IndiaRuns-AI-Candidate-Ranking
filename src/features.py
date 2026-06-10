@@ -144,7 +144,31 @@ def experience_fit(candidate):
 
     if "junior" in candidate.get("profile", {}).get("current_title", "").lower():
         score *= 0.7
-    return score, {"yoe": yoe}
+
+    # JD wants "at least 4-5 of those years in applied ML/AI roles", so total
+    # tenure alone isn't enough: measure how much of the career was actually
+    # spent in ML/AI roles (core counts fully, adjacent engineering at half).
+    applied_months = 0.0
+    for job in candidate.get("career_history", []):
+        cls = _classify_title(job.get("title", ""))
+        months = job.get("duration_months") or 0
+        if cls == "core":
+            applied_months += months
+        elif cls == "adjacent":
+            applied_months += 0.5 * months
+    applied_years = applied_months / 12.0
+
+    if applied_years >= 4:
+        applied_factor = 1.0
+    elif applied_years >= 2:
+        applied_factor = 0.85
+    elif applied_years >= 1:
+        applied_factor = 0.7
+    else:
+        applied_factor = 0.55
+    score *= applied_factor
+
+    return score, {"yoe": yoe, "applied_years": round(applied_years, 1)}
 
 
 # --- company / career ------------------------------------------------------

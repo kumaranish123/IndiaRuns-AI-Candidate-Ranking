@@ -107,7 +107,6 @@ src/
 tests/
   test_ranker.py         # unit + end-to-end tests (no dataset needed)
 docs/
-  ARCHITECTURE.md        # pipeline + design rationale
   IDEA_SUBMISSION.md     # filled idea-submission template
 ```
 
