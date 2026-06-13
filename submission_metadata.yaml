@@ -21,7 +21,7 @@ github_repo: "https://github.com/kumaranish123/IndiaRuns-AI-Candidate-Ranking"
 sandbox_link: "https://indiaruns-ai-candidate-ranking-1.streamlit.app/"
 # A Streamlit app (app.py) that runs the same ranker on a small sample.
 
-video_demo_link: "<paste-after-recording-and-uploading-the-demo>"
+video_demo_link: "https://drive.google.com/file/d/1brIbPLqXPTJVZui1jWBqWmZ3JqQgbmxX/view?usp=sharing"
 
 reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
 

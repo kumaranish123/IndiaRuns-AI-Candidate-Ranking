@@ -4,6 +4,8 @@
 
 **Live demo:** https://indiaruns-ai-candidate-ranking-1.streamlit.app/
 
+**Video walkthrough:** https://drive.google.com/file/d/1brIbPLqXPTJVZui1jWBqWmZ3JqQgbmxX/view?usp=sharing
+
 Given the released *Senior AI Engineer (Founding Team)* job description and a pool of
 100,000 candidate profiles, this system produces an explainable, ranked list of the
 top 100 best-fit candidates.

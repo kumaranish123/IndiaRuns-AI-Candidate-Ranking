@@ -128,5 +128,5 @@ filters on (Stage-3 compute reproduction, Stage-4 reasoning review, Stage-5 defe
 
 - **GitHub:** https://github.com/kumaranish123/IndiaRuns-AI-Candidate-Ranking
 - **Sandbox:** https://indiaruns-ai-candidate-ranking-1.streamlit.app/
-- **Video demo:** `<paste after recording and uploading the screencast>`
+- **Video demo:** https://drive.google.com/file/d/1brIbPLqXPTJVZui1jWBqWmZ3JqQgbmxX/view?usp=sharing
 - **Ranked CSV:** `submission.csv` (top-100)
