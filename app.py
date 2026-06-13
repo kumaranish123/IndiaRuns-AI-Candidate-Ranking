@@ -7,22 +7,39 @@ the exact same `rank()` code path used to generate the full submission.
     streamlit run app.py
 """
 
+import csv
 import io
 import os
 import tempfile
+import time
 
 import streamlit as st
 
 from rank import rank
 from src.io_utils import iter_candidates
 
-st.set_page_config(page_title="Redrob Candidate Ranker", page_icon="*", layout="wide")
+st.set_page_config(
+    page_title="Redrob Candidate Ranker",
+    page_icon="\U0001F50D",
+    layout="wide",
+)
 
-st.title("Intelligent Candidate Discovery & Ranking Engine")
+st.title("\U0001F50D Intelligent Candidate Discovery & Ranking Engine")
 st.caption(
     "Track 1 — Redrob / INDIA RUNS. Ranks candidates for the *Senior AI Engineer "
     "(Founding Team)* JD. CPU-only, no network, no LLM calls at ranking time."
 )
+
+with st.expander("What this JD actually wants (and the traps in the data)"):
+    st.markdown(
+        "**Looking for:** 5-9 yrs (6-8 ideal), 4-5 of them **applied ML at product "
+        "companies**; hands-on **retrieval / vector search / ranking / recommendation**; "
+        "strong evaluation instinct (NDCG / MRR); Pune / Noida or Tier-1 India.\n\n"
+        "**Explicit negatives:** AI keywords with the wrong job title, title-chasing "
+        "job-hoppers, consulting-only careers, pure-research-no-production, and "
+        "computer-vision/speech profiles with no NLP/IR. The pool also hides ~80 "
+        "**honeypots** - internally impossible profiles - which we detect and bury."
+    )
 
 with st.sidebar:
     st.header("How it works")
@@ -37,6 +54,10 @@ with st.sidebar:
         "pushed to the bottom."
     )
     top_n = st.number_input("How many to rank", min_value=1, max_value=100, value=20)
+    st.divider()
+    st.markdown(
+        "[GitHub repo](https://github.com/kumaranish123/IndiaRuns-AI-Candidate-Ranking)"
+    )
 
 st.subheader("1. Provide a candidate sample (<= 100)")
 uploaded = st.file_uploader("Upload candidates (.json array or .jsonl)", type=["json", "jsonl"])
@@ -64,26 +85,47 @@ if st.button("Rank candidates", type="primary"):
     else:
         try:
             n_available = sum(1 for _ in iter_candidates(path))
-            rows = rank(path, top=min(int(top_n), n_available), verbose=False)
+            with st.spinner(f"Scoring {n_available} candidates..."):
+                started = time.perf_counter()
+                rows = rank(path, top=min(int(top_n), n_available), verbose=False)
+                elapsed = time.perf_counter() - started
         finally:
             if is_temp:
                 os.remove(path)
 
         st.subheader("2. Ranked candidates")
+
+        c1, c2, c3, c4 = st.columns(4)
+        c1.metric("Candidates scored", f"{n_available:,}")
+        c2.metric("Shortlisted", len(rows))
+        c3.metric("Top fit score", f"{rows[0][2]:.3f}" if rows else "-")
+        c4.metric("Scoring time", f"{elapsed:.2f}s")
+
         st.dataframe(
             [
-                {"rank": r[1], "candidate_id": r[0], "score": round(r[2], 4), "reasoning": r[3]}
+                {"Rank": r[1], "Candidate": r[0], "Fit score": round(r[2], 4), "Why this rank": r[3]}
                 for r in rows
             ],
             use_container_width=True,
             hide_index=True,
+            column_config={
+                "Rank": st.column_config.NumberColumn(width="small"),
+                "Fit score": st.column_config.ProgressColumn(
+                    min_value=0.0, max_value=1.0, format="%.4f"
+                ),
+                "Why this rank": st.column_config.TextColumn(width="large"),
+            },
+        )
+        st.caption(
+            "Every line in **Why this rank** is generated only from facts in the "
+            "profile - no skill is named that the candidate does not list."
         )
 
         buf = io.StringIO()
         buf.write("candidate_id,rank,score,reasoning\n")
-        import csv
-
         writer = csv.writer(buf)
         for cid, rnk, score, reasoning in rows:
             writer.writerow([cid, rnk, f"{score:.4f}", reasoning])
-        st.download_button("Download ranked CSV", buf.getvalue(), file_name="ranking.csv", mime="text/csv")
+        st.download_button(
+            "Download ranked CSV", buf.getvalue(), file_name="ranking.csv", mime="text/csv"
+        )
