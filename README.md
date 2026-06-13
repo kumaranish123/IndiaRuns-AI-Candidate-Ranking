@@ -23,7 +23,7 @@ cp /path/to/candidates.jsonl data/candidates.jsonl
 # 2. Produce the ranked top-100 CSV
 python rank.py --candidates ./data/candidates.jsonl --out ./submission.csv
 
-# 3. Validate against the official format checker
+# 3. Validate against the official format checker shipped in the challenge bundle
 python validate_submission.py submission.csv   # -> "Submission is valid."
 ```
 
@@ -93,7 +93,7 @@ consistent with the rank.
 ```
 rank.py                  # entry point: python rank.py --candidates ... --out ...
 app.py                   # Streamlit sandbox (demo on a small sample)
-validate_submission.py   # official format checker (copy from the bundle)
+sample_candidates.json   # small sample so the sandbox works out of the box
 submission_metadata.yaml # portal metadata (fill in placeholders)
 requirements.txt
 src/

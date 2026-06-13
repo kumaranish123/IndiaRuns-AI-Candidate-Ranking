@@ -41,12 +41,7 @@ with st.sidebar:
 st.subheader("1. Provide a candidate sample (<= 100)")
 uploaded = st.file_uploader("Upload candidates (.json array or .jsonl)", type=["json", "jsonl"])
 
-SAMPLE = os.path.join(
-    "[PUB] India_runs_data_and_ai_challenge",
-    "[PUB] India_runs_data_and_ai_challenge",
-    "India_runs_data_and_ai_challenge",
-    "sample_candidates.json",
-)
+SAMPLE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sample_candidates.json")
 use_sample = st.checkbox("Use the bundled sample_candidates.json", value=not uploaded)
 
 
