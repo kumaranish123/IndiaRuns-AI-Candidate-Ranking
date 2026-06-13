@@ -2,10 +2,10 @@
 
 > Follows the official *Idea Submission Template* (Redrob / INDIA RUNS, Track 1).
 
-**Team Name:** `<your-registered-participant-id>`
+**Team Name:** Akasuki
 **Problem Statement:** Intelligent Candidate Discovery & Ranking — given the *Senior AI
 Engineer (Founding Team)* JD, return an explainable ranked top-100 from a 100K-profile pool.
-**Team Leader Name:** `<your-name>`
+**Team Leader Name:** Anish Kumar
 
 ---
 
@@ -126,7 +126,7 @@ filters on (Stage-3 compute reproduction, Stage-4 reasoning review, Stage-5 defe
 
 ## Submission Assets
 
-- **GitHub:** `https://github.com/<your-username>/IndiaRuns-AI-Candidate-Ranking`
-- **Sandbox:** `https://huggingface.co/spaces/<your-username>/redrob-ranker` (or Streamlit Cloud)
-- **Video demo:** `<link to screencast>`
+- **GitHub:** https://github.com/kumaranish123/IndiaRuns-AI-Candidate-Ranking
+- **Sandbox:** `<paste after deploying app.py to Streamlit Cloud / HuggingFace Space>`
+- **Video demo:** `<paste after recording and uploading the screencast>`
 - **Ranked CSV:** `submission.csv` (top-100)
