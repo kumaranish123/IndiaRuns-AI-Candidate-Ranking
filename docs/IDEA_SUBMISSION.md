@@ -127,6 +127,6 @@ filters on (Stage-3 compute reproduction, Stage-4 reasoning review, Stage-5 defe
 ## Submission Assets
 
 - **GitHub:** https://github.com/kumaranish123/IndiaRuns-AI-Candidate-Ranking
-- **Sandbox:** `<paste after deploying app.py to Streamlit Cloud / HuggingFace Space>`
+- **Sandbox:** https://indiaruns-ai-candidate-ranking-1.streamlit.app/
 - **Video demo:** `<paste after recording and uploading the screencast>`
 - **Ranked CSV:** `submission.csv` (top-100)

@@ -2,6 +2,8 @@
 
 **INDIA RUNS — Track 1 (Data & AI Challenge), Redrob × Hack2skill.**
 
+**Live demo:** https://indiaruns-ai-candidate-ranking-1.streamlit.app/
+
 Given the released *Senior AI Engineer (Founding Team)* job description and a pool of
 100,000 candidate profiles, this system produces an explainable, ranked list of the
 top 100 best-fit candidates.
